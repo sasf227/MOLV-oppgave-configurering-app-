@@ -6,7 +6,7 @@ app = Flask(__name__)
 app.secret_key = "your_secret_key"
 
 #Configure SQLAlchemy
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///test.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///users.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
@@ -28,8 +28,10 @@ def home():
     return render_template("welcoming.html")
     
 #Login
-@app.route("/login", methods=["POST"])
+@app.route("/login", methods=["POST", "GET"])
 def login():
+    if request.method == "GET":
+        return render_template("login.html")
     #Collect info from the form
     username = request.form["username"]
     password = request.form["password"]
@@ -39,31 +41,25 @@ def login():
         session["username"] = username
         return redirect(url_for("home"))
     else:
-        pass
+        return render_template("login.html", error="Invalid username or password!")
     
-
     
 #Register
-@app.route("/register", methods=["POST"])
+@app.route("/register", methods=["POST", "GET"])
 def register():
+    if request.method == "GET":
+        return render_template("register.html")
     username = request.form["username"]
     password = request.form["password"]
     user = User.query.filter_by(username=username).first()
     if user:
-        return render_template("index.html", error="This user already exist!")
+        return render_template("register.html", error="Username already exists!")
     else:
         new_user = User(username=username, password=password)
         db.session.add(new_user)
         db.session.commit()
         session["username"] = username
-        return redirect(url_for("dashboard"))
-    
-#Dashboard
-@app.route("/welcoming")
-def dashboard():
-    if "username" in session:
-        return render_template("welcoming.html", username=session['username'])
-    return redirect(url_for('home'))
+        return redirect(url_for("home"))
 
 
 #Logout
