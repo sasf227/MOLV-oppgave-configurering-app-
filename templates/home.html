@@ -12,6 +12,13 @@
     <h2>Your Items:    {{ tasks }}</h2>
 
 
+    <ul>
+        {% for item in tasks %}
+            <li>{{ item.text }}</li>
+        {% endfor %}
+    </ul>
+
+
     
 </body>
 </html>
