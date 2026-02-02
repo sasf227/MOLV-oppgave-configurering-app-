@@ -1,29 +1,16 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
-from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
-from wtforms.validators import DataRequired
+from main import Textify
 
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///demoAppDb.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SECRET_KEY'] = 'your_secret_key'
 db = SQLAlchemy(app)
 
 
-class Textify(db.Model):
-    id=db.Column(db.Integer,unique=True,primary_key=True)
-    text=db.Column(db.String(25),nullable=False)
 
-class Registartionform(FlaskForm):   
-    text = StringField('text', validators=[DataRequired()])
-    submit = SubmitField('Sign Up') 
-
-@app.route('/')
-def home():
-    items = Textify.query.all()
-    return render_template('home.html', items=items)       #sender items to home.html template
 
 @app.route('/create', methods=['GET', 'POST'])
 def create():
@@ -36,15 +23,19 @@ def create():
     return redirect(url_for('home'))
 
 @app.route('/update/')
+def update():
+    return render_template('update.html')
+
 
 @app.route('/delete/<int:id>', methods=['POST'])
 def delete(id):
     item = Textify.query.get_or_404(id)
     db.session.delete(item)
     db.session.commit()
-    flash('Item deleted successfully!', 'success')
+    flash('Item deleted', 'success')
     return redirect(url_for('home'))
 
 if __name__ == '__main__':
-    db.create_all()
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)
