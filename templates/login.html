@@ -198,15 +198,15 @@
                 </div>
             </div>
 
-            <form onsubmit="event.preventDefault(); alert('Demo ✅');">
+            <form action="/login" method="POST">
                 <div class="field">
-                    <label for="email">E-post</label>
+                    <label for="email">Navn</label>
                     <div class="input">
                         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M4 4h16v16H4z" opacity=".25"></path>
                             <path d="M4 7l8 6 8-6"></path>
                         </svg>
-                        <input id="email" type="email" placeholder="navn@firma.no" autocomplete="email" required>
+                        <input id="User" type="text" placeholder="Ditt navn" autocomplete="off" name="username" required>
                     </div>
                 </div>
 
@@ -217,8 +217,7 @@
                             <path d="M7 11V8a5 5 0 0 1 10 0v3"></path>
                             <path d="M6 11h12v10H6z"></path>
                         </svg>
-                        <input id="password" type="password" placeholder="••••••••" autocomplete="current-password"
-                            required>
+                        <input id="password" type="password" placeholder="••••••••" autocomplete="current-password" name="password" required>
                     </div>
                 </div>
 
@@ -233,7 +232,7 @@
                 <button class="btn" type="submit">Logg inn</button>
 
                 <div class="bottom">
-                    Har du ikke konto? <a href="#">Opprett</a>
+                    Har du ikke konto? <a href="/register">Opprett</a>
                 </div>
             </form>
         </main>
