@@ -100,32 +100,34 @@ a:hover{text-decoration:underline}
 </head>
 
 <body>
-  <div class="card">
-    <h1>Registrer</h1>
-    <p>Opprett en konto for å komme i gang.</p>
+    <div class="card">
+        <form action="/register" method="POST">
+            <h1>Registrer</h1>
+            <p>Opprett en konto for å komme i gang.</p>
 
-    <div class="field">
-      <label>Navn</label>
-      <input type="text" placeholder="Ditt navn">
+            <div class="field">
+                <label>Navn</label>
+                <input type="text" placeholder="Ditt navn" autocomplete="off" name="username" required>
+            </div>
+
+            <div class="field">
+                <label>Passord</label>
+                <input type="password" minlength="8" placeholder="Minst 8 tegn" autocomplete="off" name="password" required>
+            </div>
+
+            <div class="field">
+                <label>Bekreft passord</label>
+                <input type="password" minlength="8" placeholder="Gjenta passord" autocomplete="off" required>
+            </div>
+
+            <button type="submit">Opprett konto</button>
+
+            <div class="small">
+                Har du allerede konto?
+                <a href="/login">Logg inn</a>
+            </div>
+        </form>
     </div>
-
-    <div class="field">
-      <label>Passord</label>
-      <input type="password" placeholder="Minst 8 tegn">
-    </div>
-
-    <div class="field">
-      <label>Bekreft passord</label>
-      <input type="password" placeholder="Gjenta passord">
-    </div>
-
-    <button>Opprett konto</button>
-
-    <div class="small">
-      Har du allerede konto?
-      <a href="login.html">Logg inn</a>
-    </div>
-  </div>
 </body>
 </html>
 
