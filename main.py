@@ -85,6 +85,10 @@ def create():
 
 @app.route('/update/')
 def update():
+    item = Textify.query.get_or_404(id)
+
+    if request 
+
     return render_template('update.html')
 
 

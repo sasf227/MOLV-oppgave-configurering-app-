@@ -6,19 +6,25 @@
     <title>Document</title>
 </head>
 <body>
-    Hi {{ username }}! Welcome to the Home Page.
+    <h1>Hi {{ username }} Welcome to the Home Page.</h1>
+    
     <button onclick="window.location.href='{{ url_for('logout') }}'">Logout</button>
     <button onclick="window.location.href='{{ url_for('create') }}'">Create New Item</button>
+    
     <h2>Your Items:</h2>
-
 
     <ul>
         {% for item in tasks %}
-            <li>{{ item.text }}</li>
+            <li>
+                {{ item.text }}
+                <form action="{{ url_for('delete', id=item.id) }}" method="POST" style="display: inline;">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
         {% endfor %}
     </ul>
-
-
     
+
+
 </body>
 </html>
