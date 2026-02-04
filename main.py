@@ -83,13 +83,6 @@ def create():
     db.session.commit()
     return redirect(url_for('home'))
 
-@app.route('/update/')
-def update():
-    item = Textify.query.get_or_404(id)
-
-    if request 
-
-    return render_template('update.html')
 
 
 @app.route('/delete/<int:id>', methods=['POST'])

@@ -1,0 +1,129 @@
+/* Home Page Styles */
+
+.page {
+  padding: 24px;
+}
+
+.shell {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  gap: 20px;
+}
+
+/* Header */
+.topbar {
+  background: var(--white);
+  padding: 16px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--coral);
+}
+
+.brand-sub {
+  font-size: 0.85rem;
+  color: var(--slate);
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Hero Section */
+.hero-card {
+  background: var(--white);
+  padding: 16px;
+  border-radius: 10px;
+}
+
+.hero-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.meta {
+  background: var(--white);
+  border: 1px solid var(--silver);
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.meta-label {
+  font-size: 0.75rem;
+  color: var(--slate);
+  text-transform: uppercase;
+  display: block;
+}
+
+.meta-value {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* Content Panel */
+.panel {
+  background: var(--white);
+  padding: 16px;
+  border-radius: 10px;
+}
+
+.panel-head {
+  margin-bottom: 12px;
+}
+
+.panel-sub {
+  color: var(--slate);
+  font-size: 0.9rem;
+}
+
+/* Task List */
+.task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.task-item {
+  background: #f2f2f2;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.task-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--coral);
+  flex-shrink: 0;
+}
+
+/* Empty State */
+.empty {
+  color: var(--slate);
+  text-align: center;
+  padding: 20px;
+}
