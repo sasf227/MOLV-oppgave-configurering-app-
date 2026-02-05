@@ -4,115 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
-</head>
+    
+    <<link rel="stylesheet" href="../static/styles/welcoming.css"></head>
 <body>
-    <!--Welcomer to the Application! Please <a href="{{ url_for('login') }}">Login</a> or <a href="{{ url_for('register') }}">Register</a>.-->
+        <!--Welcomer to the Application! Please <a href="{{ url_for('login') }}">Login</a> or <a href="{{ url_for('register') }}">Register</a>.-->
 
-<!doctype html>
-<html lang="no">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Task Manager – Welcome</title>
 
 <style>
 :root{
-  --bg:#2D3142;
-  --card:#4F5D75;
-  --text:#FFFFFF;
-  --muted:#BFC0C0;
-  --accent:#EF8354;
-}
-
-*{box-sizing:border-box}
-
-body{
-  margin:0;
-  min-height:100vh;
-  font-family:system-ui, Arial;
-  color:var(--text);
-  display:grid;
-  place-items:center;
-  padding:24px;
-  background:
-    radial-gradient(700px 500px at 20% 20%, rgba(239,131,84,.25), transparent 60%),
-    radial-gradient(700px 500px at 80% 30%, rgba(79,93,117,.35), transparent 60%),
-    linear-gradient(135deg, var(--bg), var(--bg));
-}
-
-.card{
-  width:100%;
-  max-width:420px;
-  text-align:center;
-  background:rgba(79,93,117,.25);
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:16px;
-  padding:32px 28px;
-}
-
-.logo{
-  width:52px;
-  height:52px;
-  margin:0 auto 16px;
-  border-radius:16px;
-  background:var(--accent);
-}
-
-h1{
-  margin:0;
-  font-size:26px;
-}
-
-p{
-  margin:10px 0 24px;
-  color:var(--muted);
-  font-size:15px;
-  line-height:1.5;
-}
-
-.buttons{
-  display:grid;
-  gap:12px;
-}
-
-a.btn{
-  display:block;
-  padding:12px;
-  border-radius:12px;
-  font-weight:700;
-  text-decoration:none;
-}
-
-.login{
-  background:var(--accent);
-  color:var(--bg);
-}
-
-.register{
-  border:1px solid var(--accent);
-  color:var(--accent);
-}
-</style>
-</head>
-
-<body>
-  <div class="card">
-    <div class="logo"></div>
-
-    <h1>Velkommen</h1>
+  -Velkommen</h1>
     <p>
       Planlegg oppgaver, følg fremdrift  
       og hold alt under kontroll.
     </p>
 
     <div class="buttons">
-      <a href="/login" class="btn login">Logg inn</a>
+      <a href="login.html" class="btn login">Logg inn</a>
+      <a href="register.html" class="btn r      <a href="/login" class="btn login">Logg inn</a>
       <a href="/register" class="btn register">Registrer</a>
     </div>
   </div>
 </body>
 </html>
 
-</body>
-</html>
+
