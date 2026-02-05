@@ -30,7 +30,7 @@ def home():
     if "username" in session:
         tasks = Textify.query.all()
         return render_template("home.html", username=session['username'], tasks=tasks)
-    return render_template("welcoming.html")
+    return render_template("velkommen.html")
     
 # Innlogging
 @app.route("/login", methods=["POST", "GET"])

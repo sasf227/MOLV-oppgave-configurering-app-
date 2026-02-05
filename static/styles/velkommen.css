@@ -22,7 +22,7 @@ body{
     linear-gradient(135deg, var(--bg), var(--bg));
 }
 
-.card{
+.kort{
   width:100%;
   max-width:420px;
   text-align:center;
@@ -52,12 +52,12 @@ p{
   line-height:1.5;
 }
 
-.buttons{
+.knapper{
   display:grid;
   gap:12px;
 }
 
-a.btn{
+a.knp{
   display:block;
   padding:12px;
   border-radius:12px;
@@ -70,7 +70,7 @@ a.btn{
   color:var(--bg);
 }
 
-.register{
+.registrer{
   border:1px solid var(--accent);
   color:var(--accent);
 }

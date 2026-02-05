@@ -3,62 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
-
+    <title>Task Manager – Logg inn</title>
     <link rel="stylesheet" href="../static/styles/login.css">
-
 </head>
-    <body>
-        <main class="card">
-            <div class="top">
-                <div class="logo" aria-hidden="true"></div>
-                <div>
-                    <h1>Task Manager</h1>
-                    <p>Logg inn for å fortsette.</p>
+
+<body>
+    <main class="card">
+        <div class="top">
+            <div class="logo" aria-hidden="true"></div>
+            <div>
+                <h1>Task Manager</h1>
+                <p>Logg inn for å fortsette.</p>
+            </div>
+        </div>
+
+        <form action="/login" method="POST">
+            <div class="field">
+                <label for="email">Navn</label>
+                <div class="input">
+                    <input id="User" type="text" placeholder="Ditt navn" autocomplete="off" name="username" required>
                 </div>
             </div>
 
-            <form action="/login" method="POST">
-                <div class="field">
-                    <label for="email">Navn</label>
-                    <div class="input">
-                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M4 4h16v16H4z" opacity=".25"></path>
-                            <path d="M4 7l8 6 8-6"></path>
-                        </svg>
-                    <input id="User" type="text" placeholder="Ditt navn" autocomplete="off" name="username" required>
-                    </div>
+            <div class="field">
+                <label for="password">Passord</label>
+                <div class="input">
+                    <input id="password" type="password" minlength="8" placeholder="••••••••" autocomplete="current-password" name="password" required>
                 </div>
+            </div>
 
-                <div class="field">
-                    <label for="password">Passord</label>
-                    <div class="input">
-                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M7 11V8a5 5 0 0 1 10 0v3"></path>
-                            <path d="M6 11h12v10H6z"></path>
-                        </svg>
-                        <input id="password" type="password" minlength="8" placeholder="••••••••" autocomplete="current-password" name="password" required>
-                    </div>
-                </div>
+            <div class="row">
+                <label class="check">
+                    <input type="checkbox">
+                    Husk meg
+                </label>
+                <a href="#">Glemt passord?</a>
+            </div>
 
-                <div class="row">
-                    <label class="check">
-                        <input type="checkbox">
-                        Husk meg
-                    </label>
-                    <a href="#">Glemt passord?</a>
-                </div>
+            <button class="btn" type="submit">Logg inn</button>
 
-                <button class="btn" type="submit">Logg inn</button>
-
-                <div class="bottom">
-                    Har du ikke konto? <a href="/register">Opprett</a>
-                </div>
-            </form>
-        </main>
-    </body>
+            <div class="bottom">
+                Har du ikke konto? <a href="/register">Opprett</a>
+            </div>
+        </form>
+    </main>
+</body>
 </html>
 
 
