@@ -41,3 +41,6 @@ build/
 dist/
 *.egg-info/
 instance/users.db
+instance/users.db
+instance/users.db
+instance/users.db

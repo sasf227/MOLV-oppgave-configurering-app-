@@ -198,6 +198,35 @@ body {
 .task-text {
   color: var(--white);
   font-size: 14.5px;
+  flex: 1;
+}
+
+/* Delete button */
+.delete-form {
+  margin: 0;
+}
+
+.btn-delete {
+  background: rgba(255, 75, 75, 0.2);
+  border: 1px solid rgba(255, 75, 75, 0.3);
+  color: rgba(255, 100, 100, 0.9);
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.btn-delete:hover {
+  background: rgba(255, 75, 75, 0.3);
+  border-color: rgba(255, 75, 75, 0.5);
+  color: rgba(255, 100, 100, 1);
 }
 
 /* Empty State */

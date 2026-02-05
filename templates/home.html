@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="../static/styles/home.css">
 </head>
@@ -50,6 +50,9 @@
                         <li class="task-item">
                             <div class="task-dot" aria-hidden="true"></div>
                             <div class="task-text">{{ item.text }}</div>
+                            <form action="{{ url_for('delete', id=item.id) }}" method="POST" class="delete-form">
+                                <button type="submit" class="btn-delete">×</button>
+                            </form>
                         </li>
                     {% endfor %}
                 </ul>

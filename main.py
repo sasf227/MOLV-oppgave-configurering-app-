@@ -102,10 +102,11 @@ def create():
 def update(id):
     item = Textify.query.get_or_404(id)
     
-    if request.method == 'POST':
+    if request.method == 'POST': 
         item.text = request.form['text']
-        db.session.commit()
+        db.session.commit() 
         return redirect(url_for('home'))
+    
     return render_template('update.html', item=item)
 
 
