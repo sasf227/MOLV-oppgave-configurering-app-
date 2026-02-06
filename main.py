@@ -3,33 +3,34 @@ from flask_sqlalchemy import SQLAlchemy
 
 # Opprett Flask-applikasjon
 app = Flask(__name__)
-app.secret_key = "your_secret_key"
+app.secret_key = "din_hemmelige_nøkkel"
 
 # Konfigurer SQLAlchemy database
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///users.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///Bruker.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
 
 # Database modeller
-class User(db.Model):
+class Bruker(db.Model):
     """Brukermodell for autentisering"""
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(25), unique=True, nullable=False)
-    password = db.Column(db.String(200), nullable=False)
+    brukernavn = db.Column(db.String(25), unique=True, nullable=False)
+    passord = db.Column(db.String(200), nullable=False)
 
-class Textify(db.Model):
+class Oppgave(db.Model):
     """Modell for oppgaver/notater"""
     id = db.Column(db.Integer, unique=True, primary_key=True)
-    text = db.Column(db.String(25), nullable=False)
+    tekst = db.Column(db.String(25), nullable=False)
+    
 
 # Ruter
 @app.route("/")
-def home():
+def hjem():
     """Hjemmeside - viser oppgaver hvis bruker er logget inn"""
-    if "username" in session:
-        tasks = Textify.query.all()
-        return render_template("home.html", username=session['username'], tasks=tasks)
+    if "brukernavn" in session:
+        oppgaver = Oppgave.query.all()
+        return render_template("hjem.html", brukernavn=session['brukernavn'], oppgaver=oppgaver)
     return render_template("velkommen.html")
     
 # Innlogging
@@ -40,85 +41,70 @@ def login():
         return render_template("login.html")
     
     # Hent data fra skjema
-    username = request.form["username"]
-    password = request.form["password"]
+    brukernavn = request.form["brukernavn"]
+    passord = request.form["passord"]
     
     # Valider bruker
-    user = User.query.filter_by(username=username).first()
-    if user and user.password == password:
-        session["username"] = username
-        return redirect(url_for("home"))
+    bruker = Bruker.query.filter_by(brukernavn=brukernavn).first()
+    if bruker and bruker.passord == passord:
+        session["brukernavn"] = brukernavn
+        return redirect(url_for("hjem"))
     else:
-        return render_template("login.html", error="Invalid username or password!")
+        return render_template("login.html", feil_meldning="Ugyldig brukernavn eller passord!")
     
     
 # Registrering
-@app.route("/register", methods=["POST", "GET"])
-def register():
+@app.route("/registrer", methods=["POST", "GET"])
+def registrer():
     """Håndter brukerregistrering"""
     if request.method == "GET":
-        return render_template("register.html")
+        return render_template("registrer.html")
     
-    username = request.form["username"]
-    password = request.form["password"]
+    brukernavn = request.form["brukernavn"]
+    passord = request.form["passord"]
     
     # Sjekk om bruker allerede eksisterer
-    user = User.query.filter_by(username=username).first()
-    if user:
-        return render_template("register.html", error="Username already exists!")
+    bruker = Bruker.query.filter_by(brukernavn=brukernavn).first()
+    if bruker:
+        return render_template("registrer.html", feil_meldning="Brukernavnet finnes allerede!")
     else:
         # Opprett ny bruker
-        new_user = User(username=username, password=password)
-        db.session.add(new_user)
+        ny_bruker = Bruker(brukernavn=brukernavn, passord=passord)
+        db.session.add(ny_bruker)
         db.session.commit()
-        session["username"] = username
-        return redirect(url_for("home"))
-
+        session["brukernavn"] = brukernavn
+        return redirect(url_for("hjem"))
 
 # Logg ut
-@app.route("/logout")
-def logout():
+@app.route("/loggut")
+def loggut():
     """Logg ut brukeren fra sesjonen"""
-    session.pop('username', None)
-    return redirect(url_for('home'))
+    session.pop('brukernavn', None)
+    return redirect(url_for('hjem'))
     
     
 # Opprett ny oppgave
-@app.route('/create', methods=['GET', 'POST'])
-def create():
+@app.route('/lagre', methods=['GET', 'POST'])
+def lagre():
     """Opprett ny oppgave/notat"""
     if request.method == 'GET':
-        return render_template('create.html')
+        return render_template('lagre.html')
     
     # Lagre ny oppgave i databasen
-    text = request.form['text']
-    new_item = Textify(text=text)
-    db.session.add(new_item)
+    tekst = request.form['tekst']
+    ny_oppgave = Oppgave(tekst=tekst)
+    db.session.add(ny_oppgave)
     db.session.commit()
-    return redirect(url_for('home'))
-
-
-@app.route('/update/<int:id>', methods=['GET', 'POST'])
-def update(id):
-    item = Textify.query.get_or_404(id)
-    
-    if request.method == 'POST': 
-        item.text = request.form['text']
-        db.session.commit() 
-        return redirect(url_for('home'))
-    
-    return render_template('update.html', item=item)
-
+    return redirect(url_for('hjem'))
 
 # Slett oppgave
-@app.route('/delete/<int:id>', methods=['POST'])
-def delete(id):
+@app.route('/slett/<int:id>', methods=['POST'])
+def slett(id):
     """Slett en oppgave fra databasen"""
-    item = Textify.query.get_or_404(id)
-    db.session.delete(item)
+    oppgave = Oppgave.query.get_or_404(id)
+    db.session.delete(oppgave)
     db.session.commit()
-
-    return redirect(url_for('home'))
+    return redirect(url_for('hjem'))
     
     
 if __name__ == "__main__":

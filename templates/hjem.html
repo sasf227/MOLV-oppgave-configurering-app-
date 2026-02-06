@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager – Hjem</title>
+    <link rel="stylesheet" href="../static/styles/hjem.css">
+</head>
+
+<body class="side">
+    <div class="skall">
+
+        <!-- header -->
+        <header class="topp">
+            <div class="merke">
+                <span class="merke-prikk" aria-hidden="true"></span>
+                <div>
+                    <div class="merke-under">Personlige notatoversikt</div>
+                </div>
+            </div>
+            <div class="handling">
+                <a class="knp knp-spøkelse" href="{{ url_for('lagre') }}">Ny oppgave</a>
+                <a class="knp knp-solid" href="{{ url_for('loggut') }}">Loggut</a>
+            </div>
+        </header>
+
+        <!-- sections -->
+        <section>
+            <div class="helt-kort">
+                <h1>Hei {{ brukernavn }}.</h1>
+                <div class="helt-meta">
+                    <div class="meta">
+                        <span class="meta-lapp">Totalt antall oppgaver</span>
+                        <span class="meta-verdi">{{ oppgaver|length }}</span>
+                    </div>
+                    <div class="meta">
+                        <span class="meta-lapp">Status</span>
+                        <span class="meta-verdi">Aktiv</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="panel">
+                <div class="panel-hode">
+                    <h2>Dine oppgaver</h2>
+                    <span class="panel-under">Siste oppføringer i din liste</span>
+                </div>
+
+                {% if oppgaver %}
+                <ul class="oppgaveliste">
+                    {% for item in oppgaver %}
+                        <li class="oppgave-item">
+                            <div class="oppgave-prikk" aria-hidden="true"></div>
+                            <div class="oppgave-tekst">{{ item.tekst }}</div>
+                            <form action="{{ url_for('slett', id=item.id) }}" method="POST" class="slett-form">
+                                <button type="submit" class="knp-slett">×</button>
+                            </form>
+                        </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <div class="tømme">
+                    <p>Du har ingen oppgaver enda.</p>
+                    <a class="knp knp-solid" href="{{ url_for('lagre') }}">Opprett din første oppgave</a>
+                </div>
+                {% endif %}
+            </div>
+        </section>
+
+    </div>
+</body>
+</html>

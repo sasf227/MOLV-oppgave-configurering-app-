@@ -8,8 +8,8 @@
 </head>
 
 <body>
-    <main class="card">
-        <div class="top">
+    <form action="/login" method="POST"class="kort">
+        <div class="topp">
             <div class="logo" aria-hidden="true"></div>
             <div>
                 <h1>Task Manager</h1>
@@ -17,36 +17,26 @@
             </div>
         </div>
 
-        <form action="/login" method="POST">
-            <div class="field">
-                <label for="email">Navn</label>
-                <div class="input">
-                    <input id="User" type="text" placeholder="Ditt navn" autocomplete="off" name="username" required>
-                </div>
+        <div class="felt">
+            <label>Navn</label>
+            <div class="input">
+                <input type="text" placeholder="Ditt navn" autocomplete="off" name="brukernavn" required>
             </div>
+        </div>
 
-            <div class="field">
-                <label for="password">Passord</label>
-                <div class="input">
-                    <input id="password" type="password" minlength="8" placeholder="••••••••" autocomplete="current-password" name="password" required>
-                </div>
+        <div class="felt">
+            <label>Passord</label>
+            <div class="input">
+                <input type="password" minlength="8" placeholder="••••••••" autocomplete="off" name="passord" required>
             </div>
+        </div>
 
-            <div class="row">
-                <label class="check">
-                    <input type="checkbox">
-                    Husk meg
-                </label>
-                <a href="#">Glemt passord?</a>
-            </div>
+        <button class="knp" type="submit">Logg inn</button>
 
-            <button class="btn" type="submit">Logg inn</button>
-
-            <div class="bottom">
-                Har du ikke konto? <a href="/register">Opprett</a>
-            </div>
-        </form>
-    </main>
+        <div class="bunn">
+            Har du ikke konto? <a href="/registrer">Opprett</a>
+        </div>
+    </form>
 </body>
 </html>
 

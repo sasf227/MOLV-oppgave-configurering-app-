@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager — Lagre Oppgave</title>
+    <link rel="stylesheet" href="../static/styles/lagre.css">
+</head>
+
+<body>
+    <form action="/lagre" method="POST" class="kort">
+        <h1>Lagre Ny Oppgave</h1>
+        <p>Lagre en ny oppgave i din liste.</p>
+
+        <div class="felt">
+            <label>Oppgave</label>
+            <input type="text" name="tekst" placeholder="Legg til en ny oppgave" autocomplete="off" required>
+        </div>
+            
+        <button type="submit" class="knp">Lagre</button>
+            
+        <div class="bunn">
+            <a href="/">Tilbake til hjemmesidet</a>
+        </div>
+    </form>
+</body>
+</html>

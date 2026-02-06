@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager – Registrer</title>
+    <link rel="stylesheet" href="../static/styles/register.css">
+</head>
+
+<body>
+    <form id="registrer-form" action="/registrer" method="post" class="kort">
+        <h1>Registrer</h1>
+        <p>Opprett en konto for å komme i gang.</p>
+
+        <div class="felt">
+          <label>Navn</label>
+          <input type="text" placeholder="Ditt navn" name="brukernavn" autocomplete="off" required>
+        </div>
+
+        <div class="felt">
+          <label>Passord</label>
+          <input id="passord" type="password" minlength="8" placeholder="Ditt passord" name="passord" autocomplete="off" required>
+        </div>
+
+        <div class="felt">
+          <label>Bekreft passord</label>
+          <input id="bekreft-passord" type="password" minlength="8" placeholder="Gjenta passord" autocomplete="off" required>
+        </div>
+
+        <button onclick="validatePassord(event)">Opprett konto</button>
+
+        <div class="små">
+          Har du allerede konto?
+          <a href="/login">Logg inn</a>
+        </div>
+    </form>
+
+    <script>
+      function validatePassord(e) {
+        const passord = document.getElementById('passord').value;
+        const bekreftPassord = document.getElementById('bekreft-passord').value;
+        const form = document.getElementById('registrer-form');
+        e.preventDefault(); // Stoppe form submission midlertidig
+
+        if (passord !== bekreftPassord) {
+          alert('Passordene må være like!');
+          return false; // Tøm skjemaet
+        }
+        form.submit(); // Hvis passordene er like,
+        return true; 
+      }
+    </script>
+</body>
+</html>
+
+
+
+
+
